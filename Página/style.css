@@ -2,12 +2,12 @@
     -webkit-tap-highlight-color: transparent;
     -webkit-text-size-adjust: 100%;
     text-align: center;
-    box-sizing: border-box!important;
+    box-sizing: border-box !important;
     margin: 0;
     padding: 0;
     border: 0;
     font-size: 100%;
-    font-family: trebuchet ms,lucida sans unicode,lucida grande,lucida sans,tahoma,sans-serif;
+    font-family: trebuchet ms, lucida sans unicode, lucida grande, lucida sans, tahoma, sans-serif;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -25,34 +25,36 @@
     height: 300px;
     overflow: hidden;
 }
-a{
+
+a {
     text-decoration: none
 }
 
-#navbarNav{
+#navbarNav {
     justify-content: space-between;
 }
-#nom-comp{
+
+#nom-comp {
     color: white;
 }
 
-.info{
- width: auto;
+.info {
+    width: auto;
 }
 
-.titulo{
+.titulo {
     text-align: center;
 }
 
-.informacion{
+.informacion {
     text-align: center;
 }
-.navbar-brand img{
+
+.navbar-brand img {
     width: 100px;
 }
 
-.imgPrincipal{
+.imgPrincipal {
     width: 1250px;
     height: 700px;
 }
-
