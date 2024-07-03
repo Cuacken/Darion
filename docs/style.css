@@ -45,14 +45,14 @@ a {
     text-align: left;
     align-items: center;
     margin: 2%;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-direction: row;
 }
 
 #eorden {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content:space-evenly;
     margin: 2%;
     flex-wrap: wrap;
     flex-direction: row;
