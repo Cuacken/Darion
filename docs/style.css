@@ -20,7 +20,8 @@ a {
 }
 
 .info {
-    width: auto;
+    display: flex;
+    align-items: center;
 }
 
 .titulo {
@@ -43,13 +44,18 @@ a {
 .orden {
     display: flex;
     text-align: left;
-    align-items: center;
-    margin: 2%;
+    align-items:flex-start;
+    margin: 1.5%;
     justify-content: space-evenly;
     flex-direction: row;
 }
 
-#eorden {
+#Juego{
+    padding: 0;
+    margin: 0;
+}
+
+#lista {
     display: flex;
     align-items: center;
     justify-content:space-evenly;
