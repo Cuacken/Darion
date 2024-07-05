@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,8 +27,10 @@ public class Game extends ApplicationAdapter {
 		img = new Texture("badlogic.jpg");
 		gameMap = new TiledGameMap();
 		cam = new OrthographicCamera();
+		cam.zoom = 1;
 		cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.update();
+
 		
 
 	}
@@ -37,11 +40,52 @@ public class Game extends ApplicationAdapter {
 		Gdx.gl.glClearColor(150,14,0,1);
 		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+		
+		//mover camara con el mouse
 		if(Gdx.input.isTouched()) {
 			cam.translate(-Gdx.input.getDeltaX(), Gdx.input.getDeltaY());
 			cam.update();
 		}
+		
+		//mover camara con las teclas
+		if(Gdx.input.isKeyPressed(Keys.UP)) {
+            cam.update();
+		}
+		if(Gdx.input.isKeyPressed(Keys.DOWN)) {
+			cam.update();
+		}
+		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+			cam.update();
+		}
+		if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+			cam.update();
+		}
+		
+		
+		
+		//zoom ++
+		if(Gdx.input.isKeyJustPressed(Keys.COMMA) || Gdx.input.isKeyJustPressed(Keys.O) || Gdx.input.isKeyJustPressed(Keys.PLUS)  ) {
+			if (cam.zoom <= 0.2f){
+				cam.update();
+				cam.zoom = 0.2f;
+				cam.update();
+			}
+			else if (cam.zoom > 0.2f){
+			cam.zoom = cam.zoom - 0.2f;
+			cam.update();
+			}
+			else if (cam.zoom == 0.0f){
+				cam.zoom = 0.2f;
+				cam.update();
+			}
+		}
+		//zoom --
+		if(Gdx.input.isKeyJustPressed(Keys.NUMPAD_DOT) || Gdx.input.isKeyJustPressed(Keys.P )|| Gdx.input.isKeyJustPressed(Keys.MINUS)) {
+			cam.zoom = cam.zoom + 0.2f;
+			cam.update();
+		}
+		
+		
 		gameMap.update(Gdx.graphics.getDeltaTime());
 		gameMap.render(cam, batch);
 
