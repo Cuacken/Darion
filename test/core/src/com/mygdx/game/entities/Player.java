@@ -32,6 +32,8 @@ public class Player extends Entity {
 		//DERECHA
 		if (Gdx.input.isKeyPressed(Keys.D))
 			this.moveX(SPEED*deltaTime);
+		//DebugTeleport
+		//incompleto falta hacer
 		super.update(deltaTime);
 	}
 	

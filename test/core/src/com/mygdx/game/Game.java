@@ -48,23 +48,27 @@ public class Game extends ApplicationAdapter {
 		}
 		
 		//mover camara con las teclas
-		if(Gdx.input.isKeyPressed(Keys.UP)) {
-            cam.update();
+		if (Gdx.input.isKeyPressed(Keys.UP)) {
+			cam.translate(0, 1, 0);
+			cam.update();
 		}
 		if(Gdx.input.isKeyPressed(Keys.DOWN)) {
+			cam.translate(0, -1, 0);
 			cam.update();
 		}
 		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+			cam.translate(-1, 0, 0);
 			cam.update();
 		}
 		if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+			cam.translate(1, 0, 0);
 			cam.update();
 		}
 		
 		
 		
 		//zoom ++
-		if(Gdx.input.isKeyJustPressed(Keys.COMMA) || Gdx.input.isKeyJustPressed(Keys.O) || Gdx.input.isKeyJustPressed(Keys.PLUS)  ) {
+		if(Gdx.input.isKeyJustPressed(Keys.O) || Gdx.input.isKeyJustPressed(Keys.NUMPAD_ADD)  ) {
 			if (cam.zoom <= 0.2f){
 				cam.update();
 				cam.zoom = 0.2f;
@@ -80,7 +84,7 @@ public class Game extends ApplicationAdapter {
 			}
 		}
 		//zoom --
-		if(Gdx.input.isKeyJustPressed(Keys.NUMPAD_DOT) || Gdx.input.isKeyJustPressed(Keys.P )|| Gdx.input.isKeyJustPressed(Keys.MINUS)) {
+		if(Gdx.input.isKeyJustPressed(Keys.P )|| Gdx.input.isKeyJustPressed(Keys.NUMPAD_SUBTRACT)) {
 			cam.zoom = cam.zoom + 0.2f;
 			cam.update();
 		}
