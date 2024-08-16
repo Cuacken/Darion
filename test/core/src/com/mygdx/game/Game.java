@@ -32,7 +32,6 @@ public class Game extends ApplicationAdapter {
 		cam.update();
 
 		
-
 	}
 
 	@Override
