@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
@@ -13,7 +14,7 @@ import com.mygdx.game.world.GameMap;
 import com.mygdx.game.world.TileType;
 import com.mygdx.game.world.TiledGameMap;
 
-public class Game extends ApplicationAdapter {
+public class Juego extends Game {
 	
 	SpriteBatch batch;
 	Texture img;
@@ -21,7 +22,6 @@ public class Game extends ApplicationAdapter {
 	
 	GameMap gameMap;
 	
-	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
@@ -34,7 +34,6 @@ public class Game extends ApplicationAdapter {
 		
 	}
 
-	@Override
 	public void render () {
 		Gdx.gl.glClearColor(150,14,0,1);
 		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
