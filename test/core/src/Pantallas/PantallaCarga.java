@@ -9,51 +9,62 @@ import elementos.Imagen;
 
 public class PantallaCarga implements Screen {
 
-	Imagen fondo;
+	private Imagen fondo;
+	private float suma, alpha;
+	private boolean carga, listo, pausa;
 	SpriteBatch b;
-	boolean fadeInTermindo = false;
-	float a = 0;
-	float contTiempo = 0, tiempoEspera = 4;
+
+	
+	
+	public PantallaCarga() {
+		this.fondo = new Imagen(Recursos.LOGO);
+		this.suma = 0.01f;
+		this.alpha = 0;
+		this.carga = false;
+		this.listo = false;
+		this.pausa = false;
+	} 
+
 
 	@Override
 	public void show() {
-		fondo = new Imagen(Recursos.LOGO);
+		this.fondo.setSize(160, 290);
+		this.fondo.setCordinates(250, 250);
 		b = Render.batch;
-		fondo.setTransparencia(a);
 	}
 
 	@Override
 	public void render(float delta) {
-		Render.limpiarPantalla(0, 0, 0);
+		Render.limpiarPantalla();
 
 		b.begin();
-			fondo.dibujar();
+			this.fondo.dibujar();
 		b.end();
-		procesarFade();
-	}
-
-	private void procesarFade() {
-		if (!fadeInTermindo) {
-			a += 0.01F;
-			if(a > 1) {
-				a = 1;
-				fadeInTermindo = true;
-			}
-		}else {
-			contTiempo += 0.05f;
-			if(contTiempo >tiempoEspera) {
-				a -= 0.01F;
-				if(a < 0) {
-					a = 0;
-					fadeInTermindo = true;
+		
+		if(this.carga) {
+			if(!this.pausa) {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
+				this.pausa = true;
 			}
-		}
-
-		fondo.setTransparencia(a);
-
+			if(!this.listo)
+				fadeOut();
+			else {
+				Recursos.MAIN.setScreen(new MenuScreen());
+				this.dispose();
+			}
+		}else
+			fadeIn();
 	}
 
+
+	@Override
+	public void dispose() {
+		this.fondo.dispose();;
+	}
 	@Override
 	public void resize(int width, int height) {
 
@@ -73,10 +84,25 @@ public class PantallaCarga implements Screen {
 	public void hide() {
 
 	}
-
-	@Override
-	public void dispose() {
-
+	
+	private void fadeIn() {
+		if(!this.carga) { 	
+			if(this.alpha >=1)
+				this.carga = true;
+		else 
+			this.alpha += this.suma;
+		this.fondo.setAlpha(this.alpha);
+		}
+	}
+	
+	private void fadeOut() {
+		if(!this.listo) {	
+			if(this.alpha < 0 )
+				this.listo = true;
+			else
+				this.alpha -= this.suma;
+			this.fondo.setAlpha(this.alpha);
 	}
 
+}
 }
