@@ -32,7 +32,10 @@ public class Imagen {
 	public void setX(float pX) {this.get_Sprite().setX(pX);}
 	public void setY(float pY) {this.get_Sprite().setY(pY);}
 	public void setSize(float pH, float pW  ) {this.get_Sprite().setSize(pW,pH);}
-	public void setCordinates (float pX, float pY) {this.setX(pX);this.setY(pY);}
+	public void setCordinates (float pX, float pY) {
+		this.setX(pX);
+		this.setY(pY);
+	}
 	public void setAlpha (float pAlpha) {
 		this.get_Sprite().setAlpha(pAlpha);
 	}
