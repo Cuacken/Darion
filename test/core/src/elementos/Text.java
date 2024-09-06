@@ -19,26 +19,54 @@ public class Text {
 	
 	//constructores
 	
-	public Text(String pFontPath, float x, float y, int pFontSize, String pTexto) {
+	public Text() {
+		initLayout();
+		generarTexto(Recursos.MENU_FONT, this.fontSize , FONT_COLOR , pShadow false);
+		this.setCordinates(100, 100f);
+		this.setTexto("");
+	}
+	
+	public Text(String pFontPath, float pX, float pY, int pFontSize, String pTexto) {
 		initLayout();
 		generarTexto(pFontPath,pFontSize, FONT_COLOR ,pShadow false);
+		this.setCordinates(pX, pY);
+		this.setTexto(pTexto);
 	}
 	
 
-	public Text(String pFontPath, float x, float y, int pFontSize, String pTexto,boolean pShadow) {
+	public Text(String pFontPath, float pX, float pY, int pFontSize, String pTexto,boolean pShadow) {
 		initLayout();
 		generarTexto(pFontPath, pFontSize, FONT_COLOR ,pShadow);
+		this.setCordinates(pX, pY);
+		this.setTexto(pTexto);
 	}
 
-	public Text(String pFontPath, float x, float y, int pFontSize, String pTexto, Color pColor) {
+	public Text(String pFontPath, float pX, float pY, int pFontSize, String pTexto, Color pColor) {
 		initLayout();
 		generarTexto(pFontPath,pFontSize, pColor ,pShadow false);
+		this.setCordinates(pX, pY);
+		this.setTexto(pTexto);
 	}
 	
 
-	public Text(String pFontPath, float x, float y, int pFontSize, String pTexto, Color pColor,boolean pShadow) {
+	public Text(String pFontPath, float pX, float pY, int pFontSize, String pTexto, Color pColor,boolean pShadow) {
 		initLayout();
 		generarTexto(pFontPath, pFontSize, pColor ,pShadow);
+		this.setCordinates(pX, pY);
+		this.setTexto(pTexto);
+	}
+	public Text (String pTexto, int pFontSize, String pFontSource) {
+		initLayout();
+		generarTexto(pFont, pFontSize, this.FONT_COLOR ,pShadow);
+		this.setCordinates(1,1);
+		this.setTexto(pTexto);
+	
+	
+	public Text (String pTexto, int pFontSize) {
+		initLayout();
+		generarTexto(Recursos.MENU_FONT, pFontSize, this.FONT_COLOR ,pShadow);
+		this.setCordinates(1,1);
+		this.setTexto(pTexto);
 	}
 	
 	//get + set
@@ -86,8 +114,16 @@ public class Text {
 		return texto;
 	}
 
-	public void setTexto(String texto) {
-		this.texto = texto;
+	public float getWidth() {
+		return this.getLayout().width;
+	}
+	public float getHeight() {
+		return this.getLayout().height;
+	}
+	
+	public void setTexto(String pTexto) {
+		this.texto = pTexto;
+		this.layout.setText(this.font, pTexto);
 	}
 
 	public void setCordinates (float pX, float pY) {
@@ -99,21 +135,31 @@ public class Text {
 		this.getFont().setColor(pColor);
 	}
 
-
+	//Funciones publicas
+	public void draw() {
+		this.font.draw(Render.batch, this.getTexto(), this.getX(), this.getY());
+	}
+	
+	public void centerText() {
+		float w = (Recursos.WIDTH/2) - (this.getWidth()/2);
+		float h = (Recursos.HEIGHT/2) - (this.getHeight()/2);
+		this.setCordinates(w, h);
+	}
 	//metodos privados
 
 	private void generarTexto(String pFontPath, float x, float y, int pFontSize, Color pColor,boolean pShadow) {
-		FreeTypeFontGenerator generator = new FreeTypeFontGenerator (Gdx.files.internal(Recursos.MENU_FONT));
+		FreeTypeFontGenerator generator = new FreeTypeFontGenerator (Gdx.files.internal(pFontPath));
 		FreeTypeFontGenerator.FreeTypeFontParameter parametro = new FreeTypeFontGenerator.FreeTypeFontParameter();
-		parametro.size = 16;
-		parametro.color = Color.FIREBRICK;
-		parametro.shadowOffsetX = 1;
-		parametro.shadowOffsetY = 1;
-		parametro.shadowColor = Color.BLACK;
-		this.font = generator.generateFont(parametro);
+		parametro.size = fontSize;
+		parametro.color = pColor;
+		if(pShadow) {
+			parametro.shadowOffsetX = 1;
+			parametro.shadowOffsetY = 1;
+			parametro.shadowColor = Color.BLACK;
+		}
 		
-		this.layout.setText(this.font, "Empezar");
-		this.font.draw(Render.batch, "Empezar", 100,100);
+		this.setFontSize(pFontSize);
+		this.font = generator.generateFont(parametro);
 	}
 	
 	private void initLayout() {
