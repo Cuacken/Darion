@@ -33,9 +33,9 @@ public class MenuScreen implements Screen{
 	@Override
 	public void render(float delta) {
 		Render.batch.begin();
-		for (Text mTemp: this.options) {
-			mTemp.dibujar;
-		}
+//		for (Text mTemp: this.options) {
+//			mTemp.dibujar;
+//		}
 		Render.batch.end();
 	}
 
