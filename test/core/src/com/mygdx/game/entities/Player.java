@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.world.GameMap;
 
 public class Player extends Entity {
-	
-	private static final int SPEED = 60;
+	private static float boost = 1 ;
+	private static final float SPEED = 60*boost;
 	
 	Texture image;
 
@@ -21,7 +21,7 @@ public class Player extends Entity {
 	@Override
 	public void update(float deltaTime) {
 		//ARRIBA
-		if (Gdx.input.isKeyPressed(Keys.W))
+		if (Gdx.input.isKeyPressed(Keys.W) == true)
 			this.moveY(SPEED*deltaTime);
 		//ABAJO
 		if (Gdx.input.isKeyPressed(Keys.S))
@@ -30,8 +30,8 @@ public class Player extends Entity {
 		if (Gdx.input.isKeyPressed(Keys.A))
 			this.moveX(-SPEED*deltaTime);
 		//DERECHA
-		//if (Gdx.input.isKeyPressed(Keys.D))
-			//this.moveX(SPEED*deltaTime);
+		if (Gdx.input.isKeyPressed(Keys.D))
+			this.moveX(SPEED*deltaTime);
 		if (Gdx.input.isKeyJustPressed(Keys.SHIFT_LEFT)){
 			if (Gdx.input.isKeyPressed(Keys.W))
 				this.moveY(SPEED*deltaTime + 30);
@@ -42,6 +42,12 @@ public class Player extends Entity {
 			if (Gdx.input.isKeyPressed(Keys.D))
 				this.moveX(SPEED*deltaTime + 30);
 			}
+		if(Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) == true) {
+			boost = 1.5f;
+		}
+		else if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) == false) {
+			boost = 1;
+		}
 		super.update(deltaTime);
 	}
 	

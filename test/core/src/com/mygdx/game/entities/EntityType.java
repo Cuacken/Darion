@@ -2,7 +2,7 @@ package com.mygdx.game.entities;
 
 public enum EntityType {
 
-	PLAYER("player", 10, 15);
+	PLAYER("player", 10, 10);
 	
 	private String id;
 	private int width,height;
