@@ -26,6 +26,7 @@ public class Juego extends Game {
 	GameMap gameMap;
 	
 	public void create () {
+		Render.app =this;
 		batch = Render.batch;
 		this.setScreen(new PantallaCarga());
 		img = new Texture("badlogic.jpg");

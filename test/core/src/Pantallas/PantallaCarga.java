@@ -2,68 +2,48 @@ package Pantallas;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
+import com.mygdx.game.Juego;
 import Utiles.Recursos;
 import Utiles.Render;
 import elementos.Imagen;
 
 public class PantallaCarga implements Screen {
 
-	private Imagen fondo;
-	private float suma, alpha;
-	private boolean carga, listo, pausa;
+	Imagen fondo;
+	boolean fadeInTerminado = true, termina = false;
 	SpriteBatch b;
-
-	
-	
-	public PantallaCarga() {
-		this.fondo = new Imagen(Recursos.LOGO);
-		this.suma = 0.01f;
-		this.alpha = 0;
-		this.carga = false;
-		this.listo = false;
-		this.pausa = false;
-	} 
+	float a = 0;
+	float contTiempo =0, tiempoEspera=5;
+	float contTiempoTermina=0, tiempoTermina =5;
 
 
 	@Override
 	public void show() {
-		this.fondo.setSize(160, 290);
-		this.fondo.setCordinates(250, 250);
+		fondo = new Imagen(Recursos.LOGO);
 		b = Render.batch;
+		fondo.setTransparencia(0);
+
 	}
 
 	@Override
 	public void render(float delta) {
-		Render.limpiarPantalla();
+		Render.limpiarPantalla(0,0,0, 0);
 
+		
 		b.begin();
-			this.fondo.dibujar();
+			fondo.dibujar();
 		b.end();
 		
-		if(this.carga) {
-			if(!this.pausa) {
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				this.pausa = true;
-			}
-			if(!this.listo)
-				fadeOut();
-			else {
-				Recursos.MAIN.setScreen(new MenuScreen());
-				this.dispose();
-			}
-		}else
-			fadeIn();
+		procesarFade();
+
 	}
+
+
 
 
 	@Override
 	public void dispose() {
-		this.fondo.dispose();;
+		
 	}
 	@Override
 	public void resize(int width, int height) {
@@ -85,24 +65,30 @@ public class PantallaCarga implements Screen {
 
 	}
 	
-	private void fadeIn() {
-		if(!this.carga) { 	
-			if(this.alpha >=1)
-				this.carga = true;
-		else 
-			this.alpha += this.suma;
-		this.fondo.setAlpha(this.alpha);
+	private void procesarFade() {
+		if (!fadeInTerminado) {
+			a += 0.01f;
+			if(a>1) {
+				a=1;
+				fadeInTerminado= true;
+			}else {
+				contTiempo += 0.05f;
+				if (contTiempo>tiempoEspera) {
+					a -= 0.01f;
+					if(a<0) { 
+						a=0;
+						termina= true;
+					}
+			}
+		}
+		fondo.setTransparencia(a);
+		if (termina) {
+			contTiempoTermina+=0.1f;
+			if(contTiempoTermina>tiempoTermina) {
+//				Render.app.setScreen();;
+			}
 		}
 	}
-	
-	private void fadeOut() {
-		if(!this.listo) {	
-			if(this.alpha < 0 )
-				this.listo = true;
-			else
-				this.alpha -= this.suma;
-			this.fondo.setAlpha(this.alpha);
 	}
-
-}
+	
 }
