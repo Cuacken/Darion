@@ -8,7 +8,6 @@ import com.mygdx.game.Juego;
 
 public class Render {
 	public static SpriteBatch batch = new SpriteBatch();
-	public static Juego app;
 	
 	public static void limpiarPantalla() {
 		ScreenUtils.clear(0, 0, 0, 0);

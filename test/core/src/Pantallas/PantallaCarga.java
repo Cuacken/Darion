@@ -10,7 +10,7 @@ import elementos.Imagen;
 public class PantallaCarga implements Screen {
 
 	Imagen fondo;
-	boolean fadeInTerminado = true, termina = false;
+	boolean fadeInTerminado = false,	termina = false;;
 	SpriteBatch b;
 	float a = 0;
 	float contTiempo =0, tiempoEspera=5;
@@ -20,8 +20,9 @@ public class PantallaCarga implements Screen {
 	@Override
 	public void show() {
 		fondo = new Imagen(Recursos.LOGO);
+		fondo.setSize(500, 500);
 		b = Render.batch;
-		fondo.setTransparencia(0);
+		fondo.setTransparencia(a);
 
 	}
 
@@ -66,29 +67,31 @@ public class PantallaCarga implements Screen {
 	}
 	
 	private void procesarFade() {
-		if (!fadeInTerminado) {
+		if(!fadeInTerminado) {
 			a += 0.01f;
 			if(a>1) {
 				a=1;
-				fadeInTerminado= true;
-			}else {
-				contTiempo += 0.05f;
-				if (contTiempo>tiempoEspera) {
-					a -= 0.01f;
-					if(a<0) { 
-						a=0;
-						termina= true;
-					}
+				fadeInTerminado = true;
+			}
+		}else {
+			contTiempo +=0.05f;
+			if(contTiempo>tiempoEspera) {
+				a -= 0.01f;
+				if(a<0) {
+					a=0;
+					termina = true;
 			}
 		}
+	}
 		fondo.setTransparencia(a);
-		if (termina) {
-			contTiempoTermina+=0.1f;
+		
+		//Fin de la Pantalla de carga Inicio menu
+		
+		if(termina) {
+			contTiempoTermina +=0.1f;
 			if(contTiempoTermina>tiempoTermina) {
-//				Render.app.setScreen();;
+				Recursos.MAIN.setScreen(new MenuScreen());
 			}
 		}
-	}
-	}
-	
+}
 }

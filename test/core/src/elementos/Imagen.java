@@ -17,6 +17,9 @@ public class Imagen {
 		
 	}
 	
+	public void setSize (float ancho, float alto) {
+		s.setSize(ancho, alto);
+	}
 
 	public void dibujar () {
 		s.draw(Render.batch);
