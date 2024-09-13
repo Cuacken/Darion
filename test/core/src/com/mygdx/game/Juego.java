@@ -28,7 +28,7 @@ public class Juego extends Game {
 	
 	public void create () {
 		batch = Render.batch;
-		this.setScreen(new MenuScreen());
+		this.setScreen(new PantallaCarga());
 		img = new Texture("badlogic.jpg");
 		gameMap = new TiledGameMap();
 		cam = new OrthographicCamera();
