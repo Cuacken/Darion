@@ -20,6 +20,8 @@ public class Player extends Entity {
 	
 	@Override
 	public void update(float deltaTime) {
+		
+		//MOVIMIENTO{
 		//ARRIBA
 		if (Gdx.input.isKeyPressed(Keys.W) == true)
 			this.moveY(SPEED*deltaTime);
@@ -32,22 +34,59 @@ public class Player extends Entity {
 		//DERECHA
 		if (Gdx.input.isKeyPressed(Keys.D))
 			this.moveX(SPEED*deltaTime);
-		if (Gdx.input.isKeyJustPressed(Keys.SHIFT_LEFT)){
+		//}
+		
+		//CARRERA{
+		if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)){
+			//ARRIBA
 			if (Gdx.input.isKeyPressed(Keys.W))
-				this.moveY(SPEED*deltaTime + 30);
+				this.moveY((SPEED*deltaTime)*boost );
+			//ABAJO
 			if (Gdx.input.isKeyPressed(Keys.S))
-				this.moveY(-SPEED*deltaTime - 30);
+				this.moveY((-SPEED*deltaTime)*boost);
+			//IZQUIERDA
 			if (Gdx.input.isKeyPressed(Keys.A))
-				this.moveX(-SPEED*deltaTime - 30);
+				this.moveX((-SPEED*deltaTime)*boost);
+			//DERECHA
 			if (Gdx.input.isKeyPressed(Keys.D))
-				this.moveX(SPEED*deltaTime + 30);
+				this.moveX((SPEED*deltaTime)*boost);
 			}
-		if(Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) == true) {
-			boost = 1.5f;
+		//set boost a carrera
+		if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)) {
+			boost = 1.15f;
 		}
-		else if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) == false) {
-			boost = 1;
+		else {
+			boost = 1f;
 		}
+		//}
+		
+		//ROLL{
+		if (Gdx.input.isKeyJustPressed(Keys.CONTROL_LEFT)) {
+			//ARRIBA
+			if (Gdx.input.isKeyPressed(Keys.W))
+				this.moveY((SPEED*deltaTime)*boost );
+			//ABAJO
+			if (Gdx.input.isKeyPressed(Keys.S))
+				this.moveY((-SPEED*deltaTime)*boost);
+			//IZQUIERDA
+			if (Gdx.input.isKeyPressed(Keys.A))
+				this.moveX((-SPEED*deltaTime)*boost);
+			//DERECHA
+			if (Gdx.input.isKeyPressed(Keys.D))
+				this.moveX((SPEED*deltaTime)*boost);
+		}
+		//set boost a roll
+		if(Gdx.input.isKeyPressed(Keys.CONTROL_LEFT)) {
+			boost = 6.0001f;
+			for(int i=0;i>15;i++) {
+				boost = boost - 0.13334f;
+			}
+		}
+		else {
+			boost = 1f;
+		}
+		//}
+		
 		super.update(deltaTime);
 	}
 	
