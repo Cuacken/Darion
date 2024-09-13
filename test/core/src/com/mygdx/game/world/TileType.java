@@ -3,17 +3,14 @@ package com.mygdx.game.world;
 import java.util.HashMap;
 
 public enum TileType {
-	
-	NADA(1, false, "Empty"),
-	PARED(2, true, "Wall"),
-	PUERTA(3, false, "Door"),
-	BOTONA(4, false, "Activate"),
-	BOTOND(5, false, "Deactivate"),
-	PINCHOS(6, false, "Spikes"),
-	PAREDA(7, true, "WallActivated"),
-	PAREDD(8, false, "WallDeactivated"),
-	TEST(9, true, "Test"),
-	CAMARA(10, false, "CameraCenter");
+	NADA(1, true, "Empty"),
+	COLISION(2, true, "Colission"),
+	ACCESO(3, false, "Access"),
+	COLISIONACTIVABLE(4, true, "ActivatedColission"),
+	DAÑO(5, false, "Damage"),
+	ACTIVAR(6, false, "Activate"),
+	CAMARA(7, false, "CameraCenter"),
+	ACCESOACTIVABLE(8, false, "ActivatedAccess");
 	
 	public static final int TILE_SIZE = 16;
 	

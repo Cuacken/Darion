@@ -13,8 +13,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.world.GameMap;
 import com.mygdx.game.world.TileType;
 import com.mygdx.game.world.TiledGameMap;
-
-import Pantallas.PantallaCarga;
 import Utiles.Render;
 
 public class Juego extends Game {
@@ -27,7 +25,7 @@ public class Juego extends Game {
 	
 	public void create () {
 		batch = Render.batch;
-		this.setScreen(new PantallaCarga());
+
 		img = new Texture("badlogic.jpg");
 		gameMap = new TiledGameMap();
 		cam = new OrthographicCamera();
@@ -46,7 +44,7 @@ public class Juego extends Game {
 	
 		//mover camara con el mouse
 		if(Gdx.input.isTouched()) {
-			cam.translate(-Gdx.input.getDeltaX(), Gdx.input.getDeltaY());
+			cam.translate(-Gdx.input.getDeltaX()*cam.zoom, Gdx.input.getDeltaY()*cam.zoom);
 			cam.update();
 		}
 		
@@ -69,10 +67,9 @@ public class Juego extends Game {
 		}
 		
 		
-		
 		//zoom ++
 		if(Gdx.input.isKeyJustPressed(Keys.O) || Gdx.input.isKeyJustPressed(Keys.NUMPAD_ADD)  ) {
-			if (cam.zoom <= 0.2f){
+			if (cam.zoom <= 0.4f){
 				cam.update();
 				cam.zoom = 0.2f;
 				cam.update();

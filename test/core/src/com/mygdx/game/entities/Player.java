@@ -30,10 +30,18 @@ public class Player extends Entity {
 		if (Gdx.input.isKeyPressed(Keys.A))
 			this.moveX(-SPEED*deltaTime);
 		//DERECHA
-		if (Gdx.input.isKeyPressed(Keys.D))
-			this.moveX(SPEED*deltaTime);
-		//DebugTeleport
-		//incompleto falta hacer
+		//if (Gdx.input.isKeyPressed(Keys.D))
+			//this.moveX(SPEED*deltaTime);
+		if (Gdx.input.isKeyJustPressed(Keys.SHIFT_LEFT)){
+			if (Gdx.input.isKeyPressed(Keys.W))
+				this.moveY(SPEED*deltaTime + 30);
+			if (Gdx.input.isKeyPressed(Keys.S))
+				this.moveY(-SPEED*deltaTime - 30);
+			if (Gdx.input.isKeyPressed(Keys.A))
+				this.moveX(-SPEED*deltaTime - 30);
+			if (Gdx.input.isKeyPressed(Keys.D))
+				this.moveX(SPEED*deltaTime + 30);
+			}
 		super.update(deltaTime);
 	}
 	
