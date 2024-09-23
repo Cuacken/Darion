@@ -11,10 +11,9 @@ public abstract class Entity {
 	protected float velocity;
 	protected GameMap map;
 	
-	public Entity(float x, float y, EntityType type, GameMap map) {
+	public Entity(float x, float y, EntityType type) {
 		this.pos = new Vector2(x,y);
 		this.type = type;
-		this.map = map;
 	}
 	
 	public void update (float deltaTime) {
