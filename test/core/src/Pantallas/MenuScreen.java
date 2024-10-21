@@ -31,6 +31,9 @@ public class MenuScreen implements Screen{
 	
 	@Override
 	public void show() {
+		
+//		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/myfont.ttf"));
+//		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 //		blanco = BitmapFont(Gdx.files.internal("fonts/IndieFlowe.ttf"),false);
 //		fondo = new Imagen(Recursos.MENU_BACKGROUND);
 		b = Render.batch;
