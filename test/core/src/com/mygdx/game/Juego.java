@@ -17,6 +17,8 @@ import Utiles.Render;
 
 public class Juego extends Game {
 	
+	private boolean paused; 
+	
 	SpriteBatch batch;
 	Texture img;
 	OrthographicCamera cam;
