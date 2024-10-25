@@ -3,13 +3,13 @@ package com.mygdx.game.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.world.GameMap;
+import com.mygdx.game.world.TiledGameMap;
 
 public abstract class Entity {
 	protected Vector2 pos;
 	protected EntityType type;
 	protected float velocity;
-	protected GameMap map;
+	protected TiledGameMap map;
 	
 	public Entity(float x, float y, EntityType type) {
 		this.pos = new Vector2(x,y);

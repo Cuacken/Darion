@@ -7,7 +7,7 @@ import com.mygdx.game.Principal;
 public class Recursos {
 	public static final int HEIGHT = 600;
 	public static final int WIDTH = 600;
-	public static final Game MAIN = new Principal();
+	public static final Principal MAIN = new Principal();
 	public static final String LOGO = "Fondos/LLBlanco.png"; 
 	public static final String MENU_BACKGROUND = "Fondos/images.jpg";
 	
