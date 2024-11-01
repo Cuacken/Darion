@@ -7,6 +7,8 @@ import com.mygdx.game.entities.Entity;
 import com.mygdx.game.entities.Player;
 public abstract class GameMap {
 	
+	public static final int GAME_WIDTH = 0;
+	public static int SCALE;
 	protected ArrayList<Entity> entities;
 	
 	public GameMap() {

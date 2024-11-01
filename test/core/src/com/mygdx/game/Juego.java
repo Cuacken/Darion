@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import java.awt.Graphics;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -13,10 +15,14 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.world.GameMap;
 import com.mygdx.game.world.TileType;
 import com.mygdx.game.world.TiledGameMap;
+
+import Utiles.PausaOverlay;
 import Utiles.Render;
 
 public class Juego extends Game {
-	
+	public static int SCALE;
+	public static int GAME_WIDTH;
+	private PausaOverlay pauseOverlay ;
 	private boolean paused; 
 	
 	SpriteBatch batch;
@@ -24,6 +30,20 @@ public class Juego extends Game {
 	OrthographicCamera cam;
 	
 	GameMap gameMap;
+	
+	
+	
+	
+	public void initClasses() {
+			
+		pauseOverlay = new PausaOverlay();
+	}
+	
+
+	public void draw(Graphics g) {
+			pauseOverlay.draw(g);
+	}
+
 	
 	public void create () {
 		batch = Render.batch;
