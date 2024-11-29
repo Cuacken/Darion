@@ -10,7 +10,8 @@ public enum TileType {
 	DAÑO(5, false, "Damage"),
 	ACTIVAR(6, false, "Activate"),
 	CAMARA(7, false, "CameraCenter"),
-	ACCESOACTIVABLE(8, false, "ActivatedAccess");
+	ACCESOACTIVABLE(8, false, "ActivatedAccess"),
+	TP(9, false, "Teleport");
 	
 	public static final int TILE_SIZE = 16;
 	

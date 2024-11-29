@@ -8,6 +8,7 @@ import com.mygdx.game.world.GameMap;
 public abstract class Entity {
 	protected Vector2 pos;
 	protected EntityType type;
+	protected float hp;
 	protected float velocity;
 	protected GameMap map;
 	

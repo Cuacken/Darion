@@ -1,21 +1,23 @@
-package com.mygdx.game;
+package pantallas;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.MusicManager;
 import com.mygdx.game.world.GameMap;
 import com.mygdx.game.world.TileType;
 import com.mygdx.game.world.TiledGameMap;
 import Utiles.Render;
 
-public class Juego extends Game {
+public class Juego implements Screen {
 	
 	SpriteBatch batch;
 	Texture img;
@@ -23,22 +25,28 @@ public class Juego extends Game {
 	
 	GameMap gameMap;
 	
-	public void create () {
-		batch = Render.batch;
+	@Override
+	public void dispose () {
+		Render.batch.dispose();
+		gameMap.dispose();
+	}
 
+	@Override
+	public void show() {
+		batch = Render.batch;
+		MusicManager.getInstance().playMusic("main");
 		img = new Texture("badlogic.jpg");
 		gameMap = new TiledGameMap();
 		cam = new OrthographicCamera();
 		cam.zoom = 1;
 		cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.update();
-
 		
 	}
 
-	public void render () {
-		super.render();
-		Gdx.gl.glClearColor(150,14,0,1);
+	@Override
+	public void render(float delta) {
+		Gdx.gl.glClearColor(0,0,0,0);
 		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	
@@ -94,10 +102,28 @@ public class Juego extends Game {
 		gameMap.render(cam, batch);
 
 	}
-	
+
 	@Override
-	public void dispose () {
-		Render.batch.dispose();
-		gameMap.dispose();
+	public void resize(int width, int height) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pause() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void resume() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void hide() {
+		// TODO Auto-generated method stub
+		
 	}
 }

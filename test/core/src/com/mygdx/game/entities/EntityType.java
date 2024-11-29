@@ -2,7 +2,10 @@ package com.mygdx.game.entities;
 
 public enum EntityType {
 
-	PLAYER("player", 10, 10);
+	PLAYER("player", 10, 10),
+	BATSHOOT("bat", 12, 12),
+	BATPUNCH("bat", 12, 12),
+	BULLET("bullet", 7, 7);
 	
 	private String id;
 	private int width,height;

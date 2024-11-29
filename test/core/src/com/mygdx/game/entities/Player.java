@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.world.GameMap;
 
 public class Player extends Entity {
@@ -22,71 +23,42 @@ public class Player extends Entity {
 	public void update(float deltaTime) {
 		
 		//MOVIMIENTO{
-		//ARRIBA
-		if (Gdx.input.isKeyPressed(Keys.W) == true)
-			this.moveY(SPEED*deltaTime);
-		//ABAJO
-		if (Gdx.input.isKeyPressed(Keys.S))
-			this.moveY(-SPEED*deltaTime);
-		//IZQUIERDA
-		if (Gdx.input.isKeyPressed(Keys.A))
-			this.moveX(-SPEED*deltaTime);
-		//DERECHA
-		if (Gdx.input.isKeyPressed(Keys.D))
-			this.moveX(SPEED*deltaTime);
+	//ARRIBA
+	if (Gdx.input.isKeyPressed(Keys.W) == true)
+		this.moveY((SPEED*deltaTime)*boost);
+	//ABAJO
+	if (Gdx.input.isKeyPressed(Keys.S))
+		this.moveY((-SPEED*deltaTime)*boost);
+	//IZQUIERDA
+	if (Gdx.input.isKeyPressed(Keys.A))
+		this.moveX((-SPEED*deltaTime)*boost);
+	//DERECHA
+	if (Gdx.input.isKeyPressed(Keys.D))
+		this.moveX((SPEED*deltaTime)*boost);
 		//}
-		
+	
 		//CARRERA{
-		if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)){
-			//ARRIBA
-			if (Gdx.input.isKeyPressed(Keys.W))
-				this.moveY((SPEED*deltaTime)*boost );
-			//ABAJO
-			if (Gdx.input.isKeyPressed(Keys.S))
-				this.moveY((-SPEED*deltaTime)*boost);
-			//IZQUIERDA
-			if (Gdx.input.isKeyPressed(Keys.A))
-				this.moveX((-SPEED*deltaTime)*boost);
-			//DERECHA
-			if (Gdx.input.isKeyPressed(Keys.D))
-				this.moveX((SPEED*deltaTime)*boost);
-			}
-		//set boost a carrera
-		if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)) {
-			boost = 1.15f;
-		}
-		else {
-			boost = 1f;
-		}
+
+	//set boost a carrera
+	if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)) {
+		boost = 2f;
+	}
+	else {
+		boost = 1f;
+	}
 		//}
-		
+	
 		//ROLL{
-		if (Gdx.input.isKeyJustPressed(Keys.CONTROL_LEFT)) {
-			//ARRIBA
-			if (Gdx.input.isKeyPressed(Keys.W))
-				this.moveY((SPEED*deltaTime)*boost );
-			//ABAJO
-			if (Gdx.input.isKeyPressed(Keys.S))
-				this.moveY((-SPEED*deltaTime)*boost);
-			//IZQUIERDA
-			if (Gdx.input.isKeyPressed(Keys.A))
-				this.moveX((-SPEED*deltaTime)*boost);
-			//DERECHA
-			if (Gdx.input.isKeyPressed(Keys.D))
-				this.moveX((SPEED*deltaTime)*boost);
-		}
-		//set boost a roll
-		if(Gdx.input.isKeyPressed(Keys.CONTROL_LEFT)) {
-			boost = 6.0001f;
-			for(int i=0;i>15;i++) {
-				boost = boost - 0.13334f;
-			}
-		}
-		else {
+	//set boost a roll
+	if (Gdx.input.isKeyJustPressed(Keys.CONTROL_LEFT)) {
+		boost = 2f;
+		int tiempo = 0;
+		tiempo += Gdx.graphics.getDeltaTime();
+		if(tiempo>2) {
 			boost = 1f;
 		}
-		//}
-		
+	}
+		//}		
 		super.update(deltaTime);
 	}
 	
