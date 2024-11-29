@@ -1,0 +1,76 @@
+body {
+    background-image: url('../docs/img/font1.jpeg');
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed; 
+    margin: 0; 
+    padding: 0; 
+}
+
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    height: 8.9%;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #6EA8FE;
+}
+
+#navbarNav {
+    justify-content: space-between;
+}
+
+#nom-comp {
+    height: 7%;
+    color: white;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+}
+
+.titulo {
+    text-align: center;
+}
+
+.informacion {
+    text-align: center;
+}
+
+.navbar-brand img {
+    width: 100px;
+}
+
+.imgPrincipal {
+    width: 1250px;
+    height: 700px;
+}
+
+.orden {
+    display: flex;
+    text-align: left;
+    align-items: flex-start;
+    margin: 1.5%;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+#Juego {
+    padding: 0;
+    margin: 0;
+}
+
+#lista {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 2%;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
